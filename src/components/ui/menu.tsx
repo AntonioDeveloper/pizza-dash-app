@@ -17,7 +17,7 @@ export default function Menu () {
   return (
     <aside className="hidden md:flex w-1/6 h-full flex-col relative bg-white border-r border-gray-100 dark:bg-slate-900 dark:border-slate-800 transition-colors">
       <h1 className="px-5 py-6 text-2xl font-bold text-gray-800 dark:text-gray-100">Pizza Dash Menu</h1>
-      <ThemeToggle />
+      <ThemeToggle className="ml-5 w-1/2 mb-2" />
 
       {
         menuPage === false
