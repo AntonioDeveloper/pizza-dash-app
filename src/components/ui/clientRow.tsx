@@ -53,44 +53,44 @@ export default function ClientRow({ clients }: ClientRowProps) {
       {clientLinesArray.map((client: ClientType) => {
         const isEditing = editingId === client._id;
         return (
-          <tr key={client._id} className="w-full">
-            <td className="w-1/12 border border-gray-300 px-4 py-2">{client._id}</td>
-            <td className="w-1/12 border border-gray-300 px-4 py-2">
+          <tr key={client._id} className="w-full hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+            <td className="w-1/12 border border-gray-300 dark:border-slate-700 px-4 py-2 text-gray-700 dark:text-gray-300">{client._id}</td>
+            <td className="w-1/12 border border-gray-300 dark:border-slate-700 px-4 py-2 text-gray-700 dark:text-gray-300">
               {isEditing ? (
                 <input
                   name="nome_cliente"
                   type="text"
                   placeholder="Digite o nome do cliente"
-                  className="w-full border px-2 py-1 rounded"
+                  className="w-full border px-2 py-1 rounded bg-white dark:bg-slate-900 dark:border-slate-600 dark:text-white"
                 />
               ) : (
                 client.nome_cliente
               )}
             </td>
-            <td className="w-1/12 border border-gray-300 px-4 py-2">{isEditing ? (
+            <td className="w-1/12 border border-gray-300 dark:border-slate-700 px-4 py-2 text-gray-700 dark:text-gray-300">{isEditing ? (
                 <input
                   name="endereco"
                   type="text"
                   placeholder="Digite o endereço do cliente"
-                  className="w-full border px-2 py-1 rounded"
+                  className="w-full border px-2 py-1 rounded bg-white dark:bg-slate-900 dark:border-slate-600 dark:text-white"
                 />
               ) : (
                 client.endereco
               )}</td>
-            <td className="w-1/12 border border-gray-300 px-4 py-2">{isEditing ? (
+            <td className="w-1/12 border border-gray-300 dark:border-slate-700 px-4 py-2 text-gray-700 dark:text-gray-300">{isEditing ? (
                 <input
                   name="telefone"
                   type="text"
                   placeholder="Digite o telefone do cliente"
-                  className="w-full border px-2 py-1 rounded"
+                  className="w-full border px-2 py-1 rounded bg-white dark:bg-slate-900 dark:border-slate-600 dark:text-white"
                 />
               ) : (
                 client.telefone
               )}</td>
-            <td className="w-1/12 border border-gray-300 px-4 py-2">
+            <td className="w-1/12 border border-gray-300 dark:border-slate-700 px-4 py-2 text-gray-700 dark:text-gray-300">
               {allOrders.filter((o: OrderType) => o.nome_cliente === client.nome_cliente).length}
             </td>
-            <td className="w-1/12 border border-gray-300 px-4 py-2">
+            <td className="w-1/12 border border-gray-300 dark:border-slate-700 px-4 py-2">
               <button
                 className="cursor-pointer bg-[#ec4913] text-white px-3 py-1 rounded"
                 onClick={() => {

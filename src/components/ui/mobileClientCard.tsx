@@ -25,23 +25,23 @@ export default function MobileClientCard({ client, allOrders }: MobileClientCard
   };
 
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 mb-3 relative">
+    <div className="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-slate-700 mb-3 relative transition-colors">
       <div className="flex justify-between items-start mb-2">
         <div className="flex-1">
           {isEditing ? (
             <input
-              className="w-full text-lg font-bold text-gray-800 border-b border-gray-300 focus:outline-none focus:border-orange-500 mb-1"
+              className="w-full text-lg font-bold text-gray-800 dark:text-gray-100 border-b border-gray-300 dark:border-slate-600 focus:outline-none focus:border-orange-500 mb-1 bg-transparent"
               value={editedClient.nome_cliente}
               onChange={(e) => setEditedClient({ ...editedClient, nome_cliente: e.target.value })}
               placeholder="Nome do cliente"
             />
           ) : (
-            <h3 className="text-lg font-bold text-gray-800">{client.nome_cliente}</h3>
+            <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">{client.nome_cliente}</h3>
           )}
           
           {isEditing ? (
              <input
-             className="w-full text-sm font-medium text-[#ec4913] border-b border-gray-300 focus:outline-none focus:border-orange-500 mb-1"
+             className="w-full text-sm font-medium text-[#ec4913] border-b border-gray-300 dark:border-slate-600 focus:outline-none focus:border-orange-500 mb-1 bg-transparent"
              value={editedClient.telefone}
              onChange={(e) => setEditedClient({ ...editedClient, telefone: e.target.value })}
              placeholder="Telefone"
@@ -53,7 +53,7 @@ export default function MobileClientCard({ client, allOrders }: MobileClientCard
         
         <button 
           onClick={() => isEditing ? handleSave() : setIsEditing(true)}
-          className="flex items-center gap-1 bg-orange-50 text-[#ec4913] px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-orange-100 transition-colors"
+          className="flex items-center gap-1 bg-orange-50 dark:bg-orange-900/20 text-[#ec4913] px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-orange-100 dark:hover:bg-orange-900/40 transition-colors"
         >
           {isEditing ? (
             <span>SALVAR</span>
@@ -66,11 +66,11 @@ export default function MobileClientCard({ client, allOrders }: MobileClientCard
         </button>
       </div>
 
-      <div className="flex items-start gap-2 text-gray-500 text-xs mb-4">
+      <div className="flex items-start gap-2 text-gray-500 dark:text-gray-400 text-xs mb-4">
         <IconMapPin size={14} className="mt-0.5 shrink-0" />
         {isEditing ? (
              <input
-             className="w-full text-xs text-gray-500 border-b border-gray-300 focus:outline-none focus:border-orange-500"
+             className="w-full text-xs text-gray-500 dark:text-gray-400 border-b border-gray-300 dark:border-slate-600 focus:outline-none focus:border-orange-500 bg-transparent"
              value={editedClient.endereco}
              onChange={(e) => setEditedClient({ ...editedClient, endereco: e.target.value })}
              placeholder="Endereço"
@@ -80,12 +80,12 @@ export default function MobileClientCard({ client, allOrders }: MobileClientCard
           )}
       </div>
 
-      <div className="flex items-center justify-between pt-3 border-t border-gray-50">
-        <span className="text-[10px] text-gray-400 font-mono uppercase truncate max-w-[100px]">
+      <div className="flex items-center justify-between pt-3 border-t border-gray-50 dark:border-slate-700">
+        <span className="text-[10px] text-gray-400 dark:text-gray-500 font-mono uppercase truncate max-w-[100px]">
           ID: {client._id}
         </span>
-        <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-700">
-          <IconTrophy size={14} className="text-gray-400" />
+        <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300">
+          <IconTrophy size={14} className="text-gray-400 dark:text-gray-500" />
           {orderCount} {orderCount === 1 ? 'pedido' : 'pedidos'}
         </div>
       </div>

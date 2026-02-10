@@ -42,7 +42,7 @@ export default function Home() {
     <section className="w-full h-full p-4 flex flex-col">
       {/* Header Desktop */}
       <div className="hidden md:flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold">Board de Clientes Cadastrados</h1>
+        <h1 className="text-2xl font-bold dark:text-white">Board de Clientes Cadastrados</h1>
         <button
           className="bg-[#ec4913] text-white px-4 py-2 rounded-md cursor-pointer hover:bg-[#d14010] transition-colors"
           onClick={() => setIsSignUpModalOpen(true)}
@@ -53,7 +53,7 @@ export default function Home() {
 
       {/* Header Mobile */}
       <div className="md:hidden flex items-center justify-between mb-4">
-        <h1 className="text-xl font-bold text-gray-800">Meus Clientes</h1>
+        <h1 className="text-xl font-bold text-gray-800 dark:text-white">Meus Clientes</h1>
         <button 
           onClick={() => setIsSignUpModalOpen(true)}
           className="bg-[#ec4913]/10 text-[#ec4913] p-2 rounded-lg"
@@ -67,19 +67,19 @@ export default function Home() {
       </div>
 
       {/* Desktop Table */}
-      <div className="hidden md:block w-full bg-white rounded-md border border-zinc-200 flex-1 overflow-auto">
+      <div className="hidden md:block w-full bg-white dark:bg-slate-900 rounded-md border border-zinc-200 dark:border-slate-700 flex-1 overflow-auto transition-colors">
         <table className="w-full text-left">
-          <thead className="bg-zinc-50 sticky top-0">
+          <thead className="bg-zinc-50 dark:bg-slate-800 sticky top-0 transition-colors">
             <tr>
-              <th className="px-4 py-2 w-1/12">ID</th>
-              <th className="px-4 py-2 w-3/12">Nome</th>
-              <th className="px-4 py-2 w-4/12">Endereço</th>
-              <th className="px-4 py-2 w-3/12">Telefone</th>
-              <th className="px-4 py-2 w-2/12">Total de Pedidos</th>
-              <th className="px-4 py-2 w-1/12">Ações</th>
+              <th className="px-4 py-2 w-1/12 text-gray-700 dark:text-gray-300">ID</th>
+              <th className="px-4 py-2 w-3/12 text-gray-700 dark:text-gray-300">Nome</th>
+              <th className="px-4 py-2 w-4/12 text-gray-700 dark:text-gray-300">Endereço</th>
+              <th className="px-4 py-2 w-3/12 text-gray-700 dark:text-gray-300">Telefone</th>
+              <th className="px-4 py-2 w-2/12 text-gray-700 dark:text-gray-300">Total de Pedidos</th>
+              <th className="px-4 py-2 w-1/12 text-gray-700 dark:text-gray-300">Ações</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-gray-200 dark:divide-slate-700">
             <ClientRow clients={pageItems} />
           </tbody>
         </table>

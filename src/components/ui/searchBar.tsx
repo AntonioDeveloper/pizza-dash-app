@@ -14,7 +14,7 @@ export default function SearchBar({placeholder, onChange}: SearchBarProps) {
         <IconSearch className="h-5 w-5 text-gray-400" />
       </div>
       <input 
-        className="w-full pl-10 pr-4 py-3 rounded-lg bg-white border border-gray-100 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#ec4913] focus:border-transparent shadow-sm transition-all" 
+        className="w-full pl-10 pr-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#ec4913] focus:border-transparent shadow-sm transition-all" 
         type="text" 
         placeholder={placeholder} 
         onChange={onChange}

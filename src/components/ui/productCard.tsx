@@ -11,7 +11,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ name, description, imageSrc, onAdd }: ProductCardProps) {
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full border border-gray-100">
+    <div className="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm hover:shadow-md transition-all flex flex-col h-full border border-gray-100 dark:border-slate-700">
       <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
         <Image 
           src={imageSrc} 
@@ -22,8 +22,8 @@ export default function ProductCard({ name, description, imageSrc, onAdd }: Prod
       </div>
       
       <div className="flex flex-col flex-grow">
-        <h3 className="font-bold text-lg text-gray-800 mb-1">{name}</h3>
-        <p className="text-gray-500 text-sm mb-4 line-clamp-2 flex-grow">
+        <h3 className="font-bold text-lg text-gray-800 dark:text-gray-100 mb-1">{name}</h3>
+        <p className="text-gray-500 dark:text-gray-400 text-sm mb-4 line-clamp-2 flex-grow">
           {description}
         </p>
         

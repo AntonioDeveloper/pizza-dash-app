@@ -30,10 +30,10 @@ export default function SignUpClientsModal({ open, onClose, children }: SignUpCl
       <div
         role="dialog"
         aria-modal="true"
-        className="relative bg-white rounded-xl shadow-lg w-full max-w-md max-h-[85vh] flex flex-col animate-in fade-in zoom-in duration-200"
+        className="relative bg-white dark:bg-slate-900 rounded-xl shadow-lg w-full max-w-md max-h-[85vh] flex flex-col animate-in fade-in zoom-in duration-200 transition-colors"
       >
         <button 
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100 z-10" 
+          className="absolute top-4 right-4 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-1 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 z-10" 
           onClick={onClose}
           aria-label="Fechar"
         >

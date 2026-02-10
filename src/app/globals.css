@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #ffffff;
@@ -12,42 +14,33 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #e2e8f0; /* slate-200 */
-  border-radius: 6px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #64748b; /* slate-500 */
-  border-radius: 6px;
-  border: 3px solid #e2e8f0;
+  background: #ec4913; /* Laranja do app */
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569; /* slate-600 */
+  background: #d63d0c; /* Um pouco mais escuro no hover */
 }
 
 /* Firefox */
 * {
-  scrollbar-width: auto; /* Default width instead of thin */
-  scrollbar-color: #64748b #e2e8f0;
+  scrollbar-width: thin;
+  scrollbar-color: #ec4913 transparent;
 }

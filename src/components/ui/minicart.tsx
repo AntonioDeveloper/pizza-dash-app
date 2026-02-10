@@ -44,26 +44,26 @@ export default function Minicart({ items = [], setItems, hideHeader = false, cla
 
   const getItemIcon = (name: string) => {
     if (name.toLowerCase().includes('refrigerante') || name.toLowerCase().includes('suco') || name.toLowerCase().includes('água')) {
-        return <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center"><IconGlass size={20} className="text-gray-600" /></div>
+        return <div className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center"><IconGlass size={20} className="text-gray-600 dark:text-gray-400" /></div>
     }
-    return <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center"><IconPizza size={20} className="text-gray-600" /></div>
+    return <div className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center"><IconPizza size={20} className="text-gray-600 dark:text-gray-400" /></div>
   };
 
   return (
-    <div className={`w-full h-full bg-white flex flex-col ${className ? className : 'p-6 border-l border-gray-100'}`}>
+    <div className={`w-full h-full bg-white dark:bg-slate-900 flex flex-col transition-colors ${className ? className : 'p-6 border-l border-gray-100 dark:border-slate-800'}`}>
       
       {/* Header */}
       {!hideHeader && (
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
           <IconShoppingCart className="text-[#ec4913]" size={28} />
-          <h2 className="text-xl font-bold text-gray-800 leading-tight">Resumo do<br/>Pedido</h2>
+          <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 leading-tight">Resumo do<br/>Pedido</h2>
         </div>
         
         {items.length > 0 && (
             <button 
                 onClick={clearCart}
-                className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors cursor-pointer"
+                className="bg-gray-200 dark:bg-slate-800 hover:bg-gray-300 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors cursor-pointer"
             >
                 Limpar Pedido
             </button>
@@ -77,7 +77,7 @@ export default function Minicart({ items = [], setItems, hideHeader = false, cla
             <NutritionPanel />
         ) : (
             items.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-40 text-gray-400 text-sm">
+                <div className="flex flex-col items-center justify-center h-40 text-gray-400 dark:text-gray-500 text-sm">
                     <p>Seu carrinho está vazio.</p>
                 </div>
             ) : (
@@ -87,21 +87,21 @@ export default function Minicart({ items = [], setItems, hideHeader = false, cla
                         <div className="flex items-center gap-3">
                             {getItemIcon(item.nome_item)}
                             <div>
-                                <p className="font-bold text-gray-800 text-sm">{item.nome_item}</p>
-                                <p className="text-gray-400 text-xs">Tamanho: Padrão</p>
+                                <p className="font-bold text-gray-800 dark:text-gray-100 text-sm">{item.nome_item}</p>
+                                <p className="text-gray-400 dark:text-gray-500 text-xs">Tamanho: Padrão</p>
                             </div>
                         </div>
                         
                         <div className="flex items-center gap-3">
                              <button 
-                                className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold hover:bg-gray-300 transition-colors cursor-pointer"
+                                className="w-6 h-6 rounded-full bg-gray-200 dark:bg-slate-800 flex items-center justify-center text-gray-600 dark:text-gray-400 font-bold hover:bg-gray-300 dark:hover:bg-slate-700 transition-colors cursor-pointer"
                                 onClick={() => setItems?.(items.map(i => i.nome_item === item.nome_item && i.quantidade > 0 ? { ...i, quantidade: i.quantidade - 1 } : i).filter(i => i.quantidade > 0))}
                              >
                                 -
                             </button>
                             <span className="text-sm font-semibold w-4 text-center">{item.quantidade}</span>
                             <button 
-                                className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold hover:bg-gray-300 transition-colors cursor-pointer"
+                                className="w-6 h-6 rounded-full bg-gray-200 dark:bg-slate-800 flex items-center justify-center text-gray-600 dark:text-gray-400 font-bold hover:bg-gray-300 dark:hover:bg-slate-700 transition-colors cursor-pointer"
                                 onClick={() => setItems?.(items.map(i => i.nome_item === item.nome_item ? { ...i, quantidade: i.quantidade + 1 } : i))}
                             >
                                 +
@@ -115,15 +115,15 @@ export default function Minicart({ items = [], setItems, hideHeader = false, cla
       </div>
 
       {/* Footer / Total */}
-      <div className="mt-auto border-t border-gray-100 pt-6">
+      <div className="mt-auto border-t border-gray-100 dark:border-slate-800 pt-6 transition-colors">
         <div className="flex items-center justify-between mb-6">
-          <p className="text-gray-800 font-bold">Subtotal</p>
-          <p className="text-gray-800 font-bold">R$ {total.toFixed(2)}</p>
+          <p className="text-gray-800 dark:text-gray-200 font-bold">Subtotal</p>
+          <p className="text-gray-800 dark:text-gray-200 font-bold">R$ {total.toFixed(2)}</p>
         </div>
 
         <button
           onClick={() => setShowNutrition((s) => !s)}
-          className="w-full mb-4 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 text-sm font-medium px-3 py-2 rounded-lg transition-colors shadow-sm"
+          className="w-full mb-4 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium px-3 py-2 rounded-lg transition-colors shadow-sm"
         >
           {showNutrition ? "Voltar para Itens" : "Mostrar Análise Nutricional"}
         </button>
@@ -139,11 +139,11 @@ export default function Minicart({ items = [], setItems, hideHeader = false, cla
 
       <ModalComponent open={isOpen} onClose={() => setIsOpen(false)}>
         <div className="text-center p-4">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <IconPizza className="text-green-600" size={32} />
+            <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                <IconPizza className="text-green-600 dark:text-green-400" size={32} />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Pedido Realizado!</h2>
-            <p className="text-gray-500">Seu pedido foi enviado para a cozinha.</p>
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2 transition-colors">Pedido Realizado!</h2>
+            <p className="text-gray-500 dark:text-gray-400 transition-colors">Seu pedido foi enviado para a cozinha.</p>
         </div>
       </ModalComponent>
     </div>

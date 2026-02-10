@@ -5,7 +5,7 @@ import { useOrders } from "@/context/context";
 import SignUpClientsModal from "./signUpClientsModal";
 
 export default function SignUpManager() {
-  const { isSignUpModalOpen, setIsSignUpModalOpen, signUpClient, loginClient } = useOrders();
+  const { isSignUpModalOpen, setIsSignUpModalOpen, signUpClient, loginClient, currentClient, logoutClient } = useOrders();
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [nome, setNome] = useState("");
   const [endereco, setEndereco] = useState("");
@@ -25,6 +25,40 @@ export default function SignUpManager() {
       setTelefone("");
     }
   }, [isSignUpModalOpen]);
+
+  const handleLogout = async () => {
+    await logoutClient();
+    setIsSignUpModalOpen(false);
+  };
+
+  if (isSignUpModalOpen && currentClient) {
+    return (
+      <SignUpClientsModal open={isSignUpModalOpen} onClose={() => setIsSignUpModalOpen(false)}>
+        <div className="flex flex-col gap-4 text-center">
+            <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+                Olá, {currentClient.nome_cliente}!
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400">
+                Você já está logado.
+            </p>
+            <div className="flex flex-col gap-3 mt-4">
+                <button 
+                    onClick={() => setIsSignUpModalOpen(false)}
+                    className="w-full h-12 bg-[#ec4913] text-white font-semibold rounded-md hover:bg-[#d14010] transition-colors"
+                >
+                    Continuar Comprando
+                </button>
+                <button 
+                    onClick={handleLogout}
+                    className="w-full h-12 border border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 font-semibold rounded-md hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
+                >
+                    Sair / Trocar Conta
+                </button>
+            </div>
+        </div>
+      </SignUpClientsModal>
+    )
+  }
 
   const handleSignUp = async () => {
     const payload = { nome_cliente: nome, endereco, telefone };
@@ -64,9 +98,7 @@ export default function SignUpManager() {
       if (typeof result === 'object' && result && 'ok' in result) {
         if (result.ok) {
           setSuccessMessage(`Bem-vindo(a), ${result.client.nome_cliente}!`);
-          setTimeout(() => {
-            setIsSignUpModalOpen(false);
-          }, 1500);
+          // Não fecha mais automaticamente, deixa o usuário ver a tela de logado
         } else {
           setErrorMessage(result.errorMessage ?? "Erro ao entrar");
         }
@@ -84,69 +116,69 @@ export default function SignUpManager() {
     <SignUpClientsModal open={isSignUpModalOpen} onClose={() => setIsSignUpModalOpen(false)}>
       <div className="flex flex-col gap-4">
         {/* Abas */}
-        <div className="flex border-b border-gray-200 mb-2">
+        <div className="flex border-b border-gray-200 dark:border-slate-700 mb-2">
             <button 
-                className={`flex-1 pb-2 text-center font-medium ${mode === 'login' ? 'text-[#ec4913] border-b-2 border-[#ec4913]' : 'text-gray-500'}`}
+                className={`flex-1 pb-2 text-center font-medium transition-colors ${mode === 'login' ? 'text-[#ec4913] border-b-2 border-[#ec4913]' : 'text-gray-500 dark:text-gray-400'}`}
                 onClick={() => { setMode('login'); setErrorMessage(null); setSuccessMessage(null); }}
             >
                 Entrar
             </button>
             <button 
-                className={`flex-1 pb-2 text-center font-medium ${mode === 'signup' ? 'text-[#ec4913] border-b-2 border-[#ec4913]' : 'text-gray-500'}`}
+                className={`flex-1 pb-2 text-center font-medium transition-colors ${mode === 'signup' ? 'text-[#ec4913] border-b-2 border-[#ec4913]' : 'text-gray-500 dark:text-gray-400'}`}
                 onClick={() => { setMode('signup'); setErrorMessage(null); setSuccessMessage(null); }}
             >
                 Cadastrar
             </button>
         </div>
 
-        <h2 className="text-xl font-bold text-gray-800 text-center">
+        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 text-center">
             {mode === 'login' ? 'Acesse sua conta' : 'Crie sua conta'}
         </h2>
         
         {errorMessage && (
-          <div className="bg-red-50 text-red-600 p-3 rounded text-sm text-center">
+          <div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-3 rounded text-sm text-center">
             {errorMessage}
           </div>
         )}
         
         {successMessage && (
-          <div className="bg-green-50 text-green-600 p-3 rounded text-sm text-center">
+          <div className="bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 p-3 rounded text-sm text-center">
             {successMessage}
           </div>
         )}
 
         {mode === 'signup' && (
             <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-700">Nome</label>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Nome</label>
             <input 
                 type="text" 
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
-                className="border border-gray-300 rounded p-2 focus:outline-none focus:border-orange-500"
+                className="border border-gray-300 dark:border-slate-600 rounded p-2 focus:outline-none focus:border-orange-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
                 placeholder="Nome completo"
             />
             </div>
         )}
 
         <div className="flex flex-col gap-1">
-          <label className="text-sm font-medium text-gray-700">Telefone</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Telefone</label>
           <input 
             type="text" 
             value={telefone}
             onChange={(e) => setTelefone(e.target.value)}
-            className="border border-gray-300 rounded p-2 focus:outline-none focus:border-orange-500"
+            className="border border-gray-300 dark:border-slate-600 rounded p-2 focus:outline-none focus:border-orange-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
             placeholder="(11) 99999-9999"
           />
         </div>
 
         {mode === 'signup' && (
             <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-700">Endereço</label>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Endereço</label>
             <input 
                 type="text" 
                 value={endereco}
                 onChange={(e) => setEndereco(e.target.value)}
-                className="border border-gray-300 rounded p-2 focus:outline-none focus:border-orange-500"
+                className="border border-gray-300 dark:border-slate-600 rounded p-2 focus:outline-none focus:border-orange-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
                 placeholder="Rua, Número, Bairro"
             />
             </div>

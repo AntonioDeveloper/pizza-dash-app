@@ -11,7 +11,7 @@ export default function OrderPlacedModal() {
 
   return(
    <ModalComponent open={isOpen} onClose={() => {setIsOpen(false)}}>
-    <h1>Pedido Realizado!</h1>    
+    <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">Pedido Realizado!</h1>    
    </ModalComponent>
   )
 }

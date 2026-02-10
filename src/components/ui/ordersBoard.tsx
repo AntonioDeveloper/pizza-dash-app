@@ -91,13 +91,13 @@ export default function OrdersBoard () {
   );
 
   return(
-    <div className="w-full h-full flex flex-col bg-[#F9F9F9] overflow-hidden">
+    <div className="w-full h-full flex flex-col bg-[#F9F9F9] dark:bg-slate-950 transition-colors overflow-hidden">
       {/* Header */}
-      <div className="w-full bg-white px-4 py-4 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 shrink-0">
+      <div className="w-full bg-white dark:bg-slate-900 px-4 py-4 border-b border-gray-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 shrink-0 transition-colors">
         <div className="flex justify-between items-center w-full md:w-auto">
-          <h1 className="text-xl md:text-2xl font-bold text-gray-800">Painel de Pedidos</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100">Painel de Pedidos</h1>
           <div className="flex items-center gap-3 md:hidden">
-             <button className="text-gray-500 hover:text-gray-700">
+             <button className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
                <IconBell size={24} />
              </button>
              <div className="w-8 h-8 rounded-full bg-[#ec4913] text-white flex items-center justify-center font-bold text-sm">
@@ -114,7 +114,7 @@ export default function OrdersBoard () {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-             <Link href="/loginPage" className="bg-[#ec4913] hover:bg-[#d14010] text-white px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-orange-200 transition-colors">
+             <Link href="/loginPage" className="bg-[#ec4913] hover:bg-[#d14010] text-white px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-orange-200 dark:shadow-none transition-colors">
                Novo Pedido
              </Link>
         </div>
@@ -123,7 +123,7 @@ export default function OrdersBoard () {
       {/*Conteúdo mobile (Tabs + List) */}
       <div className="md:hidden flex-1 w-full min-h-0 flex flex-col overflow-hidden">
         {/* Tabs */}
-        <div className="w-full bg-white border-b border-gray-200 flex overflow-x-auto shrink-0 no-scrollbar">
+        <div className="w-full bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-800 flex overflow-x-auto shrink-0 no-scrollbar transition-colors">
             {tabs.map(tab => (
             <button
                 key={tab.id}
@@ -131,12 +131,12 @@ export default function OrdersBoard () {
                 className={`flex-1 min-w-[120px] py-3 text-sm font-medium border-b-2 transition-colors flex justify-center items-center gap-2 ${
                 activeTab === tab.id 
                     ? "border-[#ec4913] text-[#ec4913]" 
-                    : "border-transparent text-gray-500 hover:text-gray-700"
+                    : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
                 }`}
             >
                 {tab.label}
                 <span className={`px-2 py-0.5 rounded-full text-xs ${
-                activeTab === tab.id ? "bg-orange-100 text-[#ec4913]" : "bg-gray-100 text-gray-600"
+                activeTab === tab.id ? "bg-orange-100 dark:bg-orange-900/30 text-[#ec4913]" : "bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-400"
                 }`}>
                 {getTabCount(tab.statuses)}
                 </span>
@@ -145,7 +145,7 @@ export default function OrdersBoard () {
         </div>
 
         {/* Lista de Pedidos */}
-        <div className="flex-1 w-full min-h-0 px-4 py-4 overflow-y-auto bg-gray-50">
+        <div className="flex-1 w-full min-h-0 px-4 py-4 overflow-y-auto bg-gray-50 dark:bg-slate-950 transition-colors">
             <div className="flex flex-col gap-4 max-w-3xl mx-auto">
             {filteredOrdersMobile.length > 0 ? (
                 filteredOrdersMobile.map((order) => (
@@ -184,7 +184,7 @@ export default function OrdersBoard () {
       </div>
 
       {/* Mobile FAB (Floating Action Button - Criar Novo Pedido) */}
-      <Link href="/loginPage" className="fixed bottom-20 right-4 w-14 h-14 bg-[#ec4913] rounded-full shadow-lg flex items-center justify-center text-white hover:bg-[#d14010] transition-colors z-50 md:hidden">
+      <Link href="/loginPage" className="fixed bottom-20 right-4 w-14 h-14 bg-[#ec4913] rounded-full shadow-lg dark:shadow-none flex items-center justify-center text-white hover:bg-[#d14010] transition-colors z-50 md:hidden">
          <IconPlus size={32} />
       </Link>
     </div>

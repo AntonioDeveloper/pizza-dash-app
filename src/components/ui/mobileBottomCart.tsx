@@ -35,7 +35,7 @@ export default function MobileBottomCart() {
 
   return (
     <>
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] p-4 z-50 md:hidden pb-safe">
+        <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] p-4 z-50 md:hidden pb-safe transition-colors">
             {/* Summary Row */}
             <div 
                 className="flex items-center justify-between mb-3 cursor-pointer"
@@ -49,8 +49,8 @@ export default function MobileBottomCart() {
                         </span>
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-xs text-gray-500 font-medium">Subtotal</span>
-                        <span className="text-gray-900 font-bold text-lg">R$ {total.toFixed(2).replace('.', ',')}</span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">Subtotal</span>
+                        <span className="text-gray-900 dark:text-gray-100 font-bold text-lg">R$ {total.toFixed(2).replace('.', ',')}</span>
                     </div>
                 </div>
                 
@@ -72,14 +72,14 @@ export default function MobileBottomCart() {
 
         {/* Full Screen Cart Details Modal */}
         {isDetailsOpen && (
-            <div className="fixed inset-0 z-[60] bg-white flex flex-col md:hidden animate-in slide-in-from-bottom duration-300">
-                <div className="p-4 flex items-center justify-between border-b border-gray-100">
+            <div className="fixed inset-0 z-[60] bg-white dark:bg-slate-900 flex flex-col md:hidden animate-in slide-in-from-bottom duration-300 transition-colors">
+                <div className="p-4 flex items-center justify-between border-b border-gray-100 dark:border-slate-800">
                     <div className="flex items-center gap-3">
-                        <h2 className="text-lg font-bold text-gray-800">Seu Pedido</h2>
+                        <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100">Seu Pedido</h2>
                         {cartItems.length > 0 && (
                             <button 
                                 onClick={() => setCartItems([])}
-                                className="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1.5 rounded-full"
+                                className="bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-bold px-3 py-1.5 rounded-full"
                             >
                                 Limpar
                             </button>
@@ -87,7 +87,7 @@ export default function MobileBottomCart() {
                     </div>
                     <button 
                         onClick={() => setIsDetailsOpen(false)}
-                        className="text-gray-500 font-medium text-sm bg-gray-50 px-3 py-1.5 rounded-lg"
+                        className="text-gray-500 dark:text-gray-400 font-medium text-sm bg-gray-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg"
                     >
                         Fechar
                     </button>
@@ -97,7 +97,7 @@ export default function MobileBottomCart() {
                         items={cartItems} 
                         setItems={setCartItems} 
                         hideHeader={true} 
-                        className="p-4 border-none" 
+                        className="p-4 border-none bg-white dark:bg-slate-900" 
                     />
                 </div>
             </div>
@@ -105,14 +105,14 @@ export default function MobileBottomCart() {
 
          <ModalComponent open={isSuccessModalOpen} onClose={() => setIsSuccessModalOpen(false)}>
             <div className="text-center p-6">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <IconShoppingBag className="text-green-600" size={32} />
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4 transition-colors">
+                    <IconShoppingBag className="text-green-600 dark:text-green-400" size={32} />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">Pedido Realizado!</h2>
-                <p className="text-gray-500">Seu pedido foi enviado para a cozinha.</p>
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2 transition-colors">Pedido Realizado!</h2>
+                <p className="text-gray-500 dark:text-gray-400 transition-colors">Seu pedido foi enviado para a cozinha.</p>
                 <button 
                     onClick={() => setIsSuccessModalOpen(false)}
-                    className="mt-6 w-full bg-gray-100 text-gray-700 font-bold py-3 rounded-xl"
+                    className="mt-6 w-full bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-200 font-bold py-3 rounded-xl transition-colors"
                 >
                     Fechar
                 </button>

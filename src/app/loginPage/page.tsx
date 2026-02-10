@@ -75,10 +75,10 @@ export default function LoginPage() {
 
   if (currentClient) {
       return (
-        <section className="w-full h-full flex items-center justify-center bg-[#F5F5F5] p-4">
-            <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md text-center">
-                <h1 className="text-2xl font-bold text-gray-800 mb-4">Bem-vindo(a), {currentClient.nome_cliente}!</h1>
-                <p className="text-gray-600 mb-6">Você já está logado.</p>
+        <section className="w-full h-full flex items-center justify-center bg-[#F5F5F5] dark:bg-slate-950 p-4 transition-colors">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-md w-full max-w-md text-center transition-colors">
+                <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Bem-vindo(a), {currentClient.nome_cliente}!</h1>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">Você já está logado.</p>
                 <div className="flex flex-col gap-3">
                     <button 
                         onClick={() => router.push('/saltyPizzasPage')}
@@ -88,7 +88,7 @@ export default function LoginPage() {
                     </button>
                     <button 
                         onClick={handleLogout}
-                        className="w-full h-12 border border-gray-300 text-gray-700 font-semibold rounded-md hover:bg-gray-50 transition-colors"
+                        className="w-full h-12 border border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-300 font-semibold rounded-md hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
                     >
                         Sair / Trocar Conta
                     </button>
@@ -99,11 +99,11 @@ export default function LoginPage() {
   }
 
   return (
-    <section className="w-full h-full flex items-center justify-center bg-[#F5F5F5] p-4">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md relative">
+    <section className="w-full h-full flex items-center justify-center bg-[#F5F5F5] dark:bg-slate-950 p-4 transition-colors">
+      <div className="bg-white dark:bg-slate-900 p-8 rounded-lg shadow-md w-full max-w-md relative transition-colors">
         <button 
           onClick={() => router.back()} 
-          className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors"
+          className="absolute top-6 right-6 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
           aria-label="Fechar"
         >
           <IconX size={24} />
@@ -111,26 +111,26 @@ export default function LoginPage() {
 
         <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-[#ec4913] mb-2">Login</h1>
-            <p className="text-gray-500">Acesse para fazer seu pedido</p>
+            <p className="text-gray-500 dark:text-gray-400">Acesse para fazer seu pedido</p>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div>
-            <label htmlFor="telefone" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="telefone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Telefone
             </label>
             <input
               id="telefone"
               type="tel"
               placeholder="Digite seu telefone com DDD (apenas números)"
-              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ec4913] focus:border-transparent transition-all"
+              className="w-full h-12 px-4 border border-gray-300 dark:border-slate-700 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ec4913] focus:border-transparent transition-all bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
               value={telefone}
               onChange={(e) => setTelefone(e.target.value)}
             />
           </div>
 
           {errorMessage && (
-            <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm border border-red-100">
+            <div className="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 p-3 rounded-md text-sm border border-red-100 dark:border-red-900/30">
                 {errorMessage}
             </div>
           )}
@@ -154,7 +154,7 @@ export default function LoginPage() {
           </button>
         </form>
         
-        <div className="mt-6 text-center text-sm text-gray-500">
+        <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
             Ainda não tem cadastro? <span className="text-[#ec4913] font-semibold cursor-pointer" onClick={() => alert("Por favor, solicite o cadastro ao balcão.")}>Fale com o atendente</span>
         </div>
       </div>

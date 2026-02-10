@@ -38,7 +38,7 @@ export default function SaltyPizzasPage() {
   return (
     <>
         {/* Desktop */}
-        <div className="hidden md:flex w-full h-full bg-[#F9F9F9]">
+        <div className="hidden md:flex w-full h-full bg-[#F9F9F9] dark:bg-slate-950 transition-colors">
             {/* Conteúdo principal */}
             <div className="flex-grow h-full flex flex-col p-8 overflow-hidden">
                 
@@ -73,20 +73,20 @@ export default function SaltyPizzasPage() {
                 </div>
             </div>
             {/* Minicart (Lado Direito) */}
-            <div className="w-[400px] h-full flex flex-col bg-white shadow-xl z-10 overflow-y-auto">
+            <div className="w-[400px] h-full flex flex-col bg-white dark:bg-slate-900 shadow-xl z-10 overflow-y-auto border-l dark:border-slate-800 transition-colors">
                 <Minicart items={cartItems} setItems={setCartItems} />
             </div>
         </div>
 
         {/* Mobile */}
-        <div className="md:hidden w-full h-full flex flex-col bg-gray-50">
+        <div className="md:hidden w-full h-full flex flex-col bg-gray-50 dark:bg-slate-950 transition-colors">
              {/* Header */}
-             <div className="bg-white p-4 pb-2">
+             <div className="bg-white dark:bg-slate-900 p-4 pb-2 transition-colors">
                 <div className="flex justify-between items-center mb-4">
                    <div className="flex items-center gap-2">
                        <span className="text-[#ec4913] font-black text-xl tracking-tighter">PIZZADASH</span>
                    </div>
-                   <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600">
+                   <div className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300">
                        <IconUser size={24} />
                    </div>
                 </div>
@@ -94,7 +94,7 @@ export default function SaltyPizzasPage() {
              </div>
 
              {/* Guias */}
-             <div className="bg-white px-4 pb-0 flex gap-6 overflow-x-auto no-scrollbar border-b border-gray-100 sticky top-0 z-10">
+             <div className="bg-white dark:bg-slate-900 px-4 pb-0 flex gap-6 overflow-x-auto no-scrollbar border-b border-gray-100 dark:border-slate-800 sticky top-0 z-10 transition-colors">
                 <button
                    onClick={() => setActiveTab('salty')}
                    className={`pb-3 pt-2 whitespace-nowrap font-bold text-sm transition-colors relative ${activeTab === 'salty' ? 'text-[#ec4913]' : 'text-gray-400'}`}

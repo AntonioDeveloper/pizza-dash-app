@@ -52,7 +52,7 @@ export default function BeveragesPage() {
       </div>
 
       {/* Minicart (Lado Direito) */}
-      <div className="w-[400px] h-full flex flex-col bg-white shadow-xl z-10 overflow-y-auto">
+      <div className="w-[400px] h-full flex flex-col bg-white dark:bg-slate-900 shadow-xl z-10 overflow-y-auto border-l dark:border-slate-800 transition-colors">
         <Minicart items={cartItems} setItems={setCartItems} />
       </div>
     </div>
